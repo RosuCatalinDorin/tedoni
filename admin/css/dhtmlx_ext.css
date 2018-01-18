@@ -1,0 +1,626 @@
+/*Layout*/
+
+.dhxlayout_base_material div.dhx_cell_layout div.dhx_cell_hdr {
+    height: 32px;
+    line-height: 32px;
+
+}
+
+.dhxlayout_base_material div.dhx_cell_layout div.dhx_cell_hdr div.dhxlayout_arrow {
+    top: 9px;
+}
+
+/*Grid*/
+.hover {
+    background-color: navy;
+}
+div.gridbox div.ftr td {
+    /*padding: 0px 0px 0px 0px;*/
+    font-size: 12px;
+    border-top: 1px solid #dfdfdf;
+    border-right: 1px solid #dfdfdf;
+}
+div.gridbox_material.gridbox table.obj tr td {
+    border-right: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+}
+div.gridbox_material.gridbox table.obj.row20px tr td{
+    border-right: 1px solid #dfdfdf;
+}
+div.gridbox_material.gridbox table.hdr td {
+    border-right: 1px solid #dfdfdf;
+    border-top: 1px solid #dfdfdf;
+}
+div.gridbox_material.gridbox table.obj tr td {
+    font-size: 12px;
+}
+
+/*
+div.gridbox_material.gridbox table.hdr td {
+    padding: 5px 0 4px 0;
+}
+
+div.gridbox .filter input, div.gridbox .filter select {
+    font-size: 12px;
+}
+
+div.gridbox_material.gridbox table.obj tr td {
+    font-size: 12px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}*/
+
+
+/*div.gridbox_material.gridbox table.hdr td{
+    border-right: 1px solid #D4D0C8;
+}
+
+div.gridbox_material.gridbox table.hdr tr:nth-child(2) td {
+    border-right: 1px solid #D4D0C8;
+}*/
+
+/*Form*/
+
+/*.dhxform_obj_material div.dhxform_label {
+    font-size: 12px;
+}
+
+.dhxform_obj_material input.dhxform_textarea, .dhxform_obj_material textarea.dhxform_textarea {
+    font-size: 12px;
+}
+
+.dhxform_obj_material .dhxform_select {
+    font-size: 12px;
+}
+
+.dhxform_obj_material div.dhxform_btn {
+    font-size: 12px;
+}*/
+.dhxform_obj_material div.dhxform_label {
+    font-size: 12px;
+}
+.dhxform_obj_material .dhxform_textarea {
+    border-width: 1px;
+}
+.dhxform_obj_material div.disabled div.dhxform_image img.dhxform_image_img {
+    opacity: 1;
+}
+
+.dhxform_obj_material .validate_error .dhxform_label, .dhxform_obj_material .validate_error .dhxform_textarea, .dhxform_obj_material .validate_error .dhxform_select, .dhxform_obj_material .validate_error div.dhxform_label_nav_link, .dhxform_obj_material .validate_error div.dhxform_label div.dhxform_label_nav_link:focus {
+    color: red;
+    border-color: red;
+}
+div.dhxform_item_label_left.button_all div.dhxform_btn{
+    height: 24px;
+    width: 29px;
+    margin: 0px;
+}
+div.dhxform_item_label_left.button_all div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Check-icon_s_bw.png');
+    /*background-position: 0 3px;*/
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+div.dhxform_item_label_left.button_all div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Check-icon_s.png');
+}
+
+div.dhxform_item_label_left.button_uall div.dhxform_btn{
+    height: 24px;
+    width: 29px;
+    margin: 0px;
+}
+div.dhxform_item_label_left.button_uall div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/UCheck-icon_s_bw.png');
+    /*background-position: 0 3px;*/
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+div.dhxform_item_label_left.button_uall div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/UCheck-icon_s.png');
+}
+div.dhxform_item_label_left.button_login div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Apps-Dialog-Logout-s_bw.png');
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+div.dhxform_item_label_left.button_login div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Apps-Dialog-Logout-s.png');
+}
+
+div.dhxform_item_label_left.button_edit div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Actions-document-edit-icon_s_bw.png');
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+div.dhxform_item_label_left.button_edit div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Actions-document-edit-icon_s.png');
+}
+div.dhxform_item_label_left.button_save div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Save_s_bw.png');
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+div.dhxform_item_label_left.button_save div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Save_s.png');
+}
+div.dhxform_item_label_left.button_close div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Exit_s_bw.png');
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+
+div.dhxform_item_label_left.button_close div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Exit_s.png');
+}
+div.dhxform_item_label_left.button_cancel div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Stop-icon_s_bw.png');
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+
+div.dhxform_item_label_left.button_cancel div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Stop-icon_s.png');
+}
+
+div.dhxform_item_label_left.button_find div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Find_request_s_bw.png');
+    background-position: 0 3px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+div.dhxform_item_label_left.button_find div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Find_request_s.png');
+}
+div.dhxform_item_label_left.button_clean div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/CleanMyMac-1-icon_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+div.dhxform_item_label_left.button_clean div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/CleanMyMac-1-icon.png');
+}
+
+div.dhxform_item_label_left.button_accept div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/clean_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 38px;
+}
+div.dhxform_item_label_left.button_accept div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/clean.png');
+}
+
+div.dhxform_item_label_left.button_print div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Printer_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 38px;
+}
+div.dhxform_item_label_left.button_print div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Printer.png');
+}
+
+div.dhxform_item_label_left.button_add div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Actions-plus-icon_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+div.dhxform_item_label_left.button_add div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Actions-plus-icon.png');
+}
+div.dhxform_item_label_left.button_add_fix div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Actions-plus-icon_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 11px;
+}
+div.dhxform_item_label_left.button_add_fix div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Actions-plus-icon.png');
+}
+div.dhxform_item_label_left.button_delete div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Trash_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+div.dhxform_item_label_left.button_delete div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Trash.png');
+}
+div.dhxform_item_label_left.button_client div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Client_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 32px;
+}
+div.dhxform_item_label_left.button_client div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Client.png');
+}
+
+div.dhxform_item_label_left.button_delete_fix div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Trash_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 8px;
+}
+div.dhxform_item_label_left.button_delete_fix div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Trash.png');
+}
+
+div.dhxform_item_label_left.button_approve div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Thumbs_Up_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 38px;
+}
+div.dhxform_item_label_left.button_approve div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Thumbs_Up.png');
+}
+div.dhxform_item_label_left.button_reject div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Thumbs_down_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 38px;
+}
+div.dhxform_item_label_left.button_reject div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Thumbs_down.png');
+}
+
+div.dhxform_item_label_left.button_details div.dhxform_btn  div.dhxform_btn_txt {
+    background-image: url('../icons/Tasks-icon_bw.png');
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    margin: 0 15px 0 3px;
+    padding-left: 38px;
+}
+div.dhxform_item_label_left.button_details div.dhxform_btn_over  div.dhxform_btn_txt {
+    background-image: url('../icons/Tasks-icon.png');
+}
+
+div.note_template {
+    font-size: 9px;
+    font-family: Tahoma;
+    color: gray;
+    width: 100%;
+}
+
+.dhxform_obj_material div.disabled .dhxform_textarea {
+    background-color: #f5f5f5;
+    border-style: solid;
+    color: #404040;
+}
+
+.dhxform_obj_material div.disabled div.dhxform_label, .dhxform_obj_material div.disabled div.dhxform_label div.dhxform_label_nav_link, .dhxform_obj_material div.disabled div.dhxform_label span.dhxform_item_required {
+    color: #404040;
+}
+div.dhxform_item_label_top.error div.dhxform_txt_label2 {
+    color: red;
+    font-weight: normal;
+}
+div.dhxform_item_label_top.minorError div.dhxform_txt_label2 {
+    color: orange;
+    font-weight: normal;
+}
+/*Combo*/
+div.dhxcombo_material.dhxcombo_disabled input.dhxcombo_input {
+    color: #a6a6a6;
+    background-color: #f5f5f5;
+}
+.dhxform_obj_material div.disabled div.dhxcombo_material {
+    color: #a6a6a6;
+    border-style: hidden;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+div.dhxcombolist_material.dhxcombolist_multicolumn div.dhxcombo_option div.dhxcombo_cell, div.dhxcombolist_material.dhxcombolist_multicolumn div.dhxcombo_option div.dhxcombo_cell_first {
+    font-size: 12px;
+}
+
+/*box*/
+
+.dhtmlx_modal_box {
+    width: 650px;
+
+    overflow: hidden;
+    display: inline-block;
+    min-width: 300px;
+
+    text-align: center;
+    position: fixed;
+    background-color: #fff;
+    z-index: 20000;
+    box-shadow: 0 28px 80px -6px rgba(0,0,0,0.4);
+
+}
+
+.dhtmlx-alert-error .dhtmlx_popup_title, .dhtmlx-confirm-error .dhtmlx_popup_title {
+    color: #fff;
+    background: #e53935;
+    height: 8px;
+}
+
+
+
+
+.dhtmlx-info, .dhtmlx_popup_title, .dhtmlx_popup_button {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -moz-user-select: -moz-none;
+    cursor: pointer;
+}
+
+.dhtmlx_popup_title {
+    padding: 10px 0;
+    font-size: 17px;
+    line-height: 8px;
+    font-family: Roboto,Arial,Helvetica;
+    height: 8px;
+}
+
+.dhtmlx-alert-error .dhtmlx_popup_button:first-child, .dhtmlx-confirm-error .dhtmlx_popup_button:first-child {
+    background: #e53935;
+    border: 0px solid #f17373;
+}
+
+.dhtmlx_popup_button.dhtmlx_ok_button div {
+    background: inherit;
+    border: 1px solid #f17373;
+    color: #fff;
+    text-shadow: 0 -1px 0 #6f6f6f;
+}
+
+.dhtmlx_button input:active, .dhtmlx_button input:focus, .dhtmlx_popup_button div:active, .dhtmlx_popup_button div:focus {
+    outline-color: #fff;
+}
+.dhtmlx_popup_button:active, .dhtmlx_popup_button:focus {
+    outline-color: #fff;
+}
+
+/* SIDEBAR */
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side div.dhxsidebar_side_items div.dhxsidebar_sep {
+    position: relative;
+    height: 2px;
+    margin: 4px 0;
+    overflow: hidden;
+    background-color: #ededed;
+}
+
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side div.dhxsidebar_side_items div.dhxsidebar_item.dhxsidebar_item_selected div.dhxsidebar_bubble {
+    background-color: #eba9a2;
+    border: 1px solid #d18178;
+
+    font-size: 8px;
+}
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item_selected {
+    border-left: 2px solid #39C;
+}
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item {
+    height: 43px;
+    line-height: 43px;
+
+}
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item img.dhxsidebar_item_icon {
+    top: 5px;
+    width: 32px;
+    height: 32px;
+}
+
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item span.dhxsidebar_close_button  {
+    background-image: url("../codebase/imgs/closeSideCell.png");
+    background-repeat: no-repeat;
+    height: 15px;
+    left: 190px;
+    position: absolute;
+    top: 4px;
+    width: 15px;
+}
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item span.dhxsidebar_close_button:hover {
+    background-image: url("../codebase/imgs/closeSideCell2.png");
+}
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item div.dhxsidebar_item_text {
+    padding-top: 2px;
+    padding-left: 54px;
+    line-height: 17px;
+    width: 135px;
+    overflow: hidden;
+}
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item div.dhxsidebar_item_text div.line_two {
+    color: #888;
+}
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item div.dhxsidebar_item_text div.line_progress {
+    border: 1px solid #a4bed4;
+    background-color: #f2f2f2;
+    height: 5px;
+    overflow: hidden;
+    position: relative;
+    width: 100px;
+}
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item div.dhxsidebar_item_text div.line_progress div.filled_progress {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 5px;
+    background-color: #52C1E0;
+    overflow: hidden;
+}
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item div.dhxsidebar_item_text.enable_progress {
+    padding-top: 1px;
+}
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhxsidebar_side.dhxsidebar_tpl_two_lines div.dhxsidebar_side_items div.dhxsidebar_item div.dhxsidebar_item_text.disable_progress div.line_progress {
+    display: none;
+}
+div.dhx_list_item div.item_text1 {
+    float: right;
+    color: #888888;
+}
+div.dhx_list_item div.item_text2 {
+    float: right;
+    color: #888888;
+}
+
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhx_cell_sidebar div.dhx_cell_sidebar_hdr div.dhx_cell_sidebar_hdr_menu_icon {
+    position: relative;
+    top: 0;
+    width: 16px;
+    height: 100%;
+    background-image: url(../codebase/imgs/dhxsidebar_material/three_dots.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    float: right;
+    padding-right: 20px;
+}
+
+/*CHART*/
+.dhx_chart {
+    font-size: 11px;
+}
+
+/*MENU*/
+div.dhtmlxMenu_material_SubLevelArea_Polygon td.sub_item_icon img.sub_icon {
+    width: 24px;
+    height: 24px;
+}
+div.dhtmlxMenu_material_SubLevelArea_Polygon td.sub_item_icon {
+    width: 24px;
+}
+/*MESSAGES*/
+.dhtmlx-mess_ok{
+    color:#3399CC !important;
+}
+
+/*CALENDAR*/
+.dhtmlxcalendar_material div.dhtmlxcalendar_dates_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell_month_weekend_dis, .dhtmlxcalendar_material div.dhtmlxcalendar_dates_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell_month_date_weekend_dis {
+    color: #e6918e;
+}
+
+
+/*
+.dhtmlxcalendar_material div.dhtmlxcalendar_dates_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell.dhtmlxcalendar_cell_month_weekend_dis div.dhtmlxcalendar_label,
+.dhtmlxcalendar_material div.dhtmlxcalendar_dates_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell.dhtmlxcalendar_cell_dis div.dhtmlxcalendar_label,
+.dhtmlxcalendar_material div.dhtmlxcalendar_dates_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell.dhtmlxcalendar_cell_month_dis div.dhtmlxcalendar_label,
+.dhtmlxcalendar_material div.dhtmlxcalendar_dates_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell.dhtmlxcalendar_cell_weekend_dis div.dhtmlxcalendar_label
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font: inherit;
+    line-height: 31px;
+    text-align: center;
+
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M1 0 L0 1 L99 100 L100 99' fill='red' /><path d='M0 99 L99 0 L100 1 L1 100' fill='red' /></svg>");
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size: 50% 50%, auto;
+}
+
+.dhtmlxcalendar_material div.dhtmlxcalendar_dates_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell_month_dis, .dhtmlxcalendar_material div.dhtmlxcalendar_dates_cont ul.dhtmlxcalendar_line li.dhtmlxcalendar_cell_month_date_dis {
+    color: #404040;
+}*/
+
+
+/*STATUS BAR*/
+.dhxsidebar_base_material div.dhxsidebar_cont div.dhx_cell_sidebar div.dhx_cell_statusbar_def div.dhx_cell_statusbar_text{
+    padding: 0px;
+}
+
+/*Scheduler*/
+.dhx_cal_event.adaugare_event div{
+    background-color: #47C0C0 !important;
+    color: #ffffff !important;
+    border: 1px solid #00979A !important;
+}
+
+.dhx_cal_event_clear.adaugare_event{
+    color: #00979A !important;
+}
+
+.dhx_cal_event.scadenta_event div{
+    background-color: #386A9B !important;
+    color: #ffffff !important;
+    border: 1px solid #0E4C85 !important;
+}
+
+.dhx_cal_event_clear.scadenta_event{
+    color: #0E4C85 !important;
+}
+
+.dhx_cal_event.depasita_event div{
+    background-color: #FF7149 !important;
+    color: #ffffff !important;
+    border: 1px solid #D9501B !important;
+}
+
+.dhx_cal_event_clear.depasita_event{
+    color: #D9501B !important;
+}
+
+
+.dhx_event_move.dhx_title{
+    display: none;
+}
+.dhx_event_resize.dhx_footer{
+    display: none;
+}
+.dhx_month_head a {
+    text-decoration: none;
+    color: rgb(64,64,64);
+    border-radius: 50%;
+    border: 1px solid rgb(233,233,233);
+    background: rgb(233,233,233);
+    font-family: Roboto, Arial, Helvetica;
+    width: auto;
+}
+
+/*PROGRESS*/
+div.dhx_cell_prtext {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: auto;
+    transform: translate(-50%,150%);
+    text-align: center;
+    color: #39c;
+    animation: blinker 2s linear infinite;
+    font-family: Roboto, Arial, Helvetica;
+}
+
+/*POP UP */
+
+div.dhx_popup_material div.dhx_popup_area td.dhx_popup_td:first-child {
+    padding-left: 5px;
+}
+div.dhx_popup_material div.dhx_popup_area td.dhx_popup_td:last-child {
+    padding-right: 5px;
+}
+@keyframes blinker {
+    50% { opacity: 0; }
+}

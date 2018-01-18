@@ -1,0 +1,9 @@
+2012-11-22 11:53:26 - DEBUG -->  WS orn_insert : For field SERIECHQ , BTRL4NN  value is not available in LOV
+2012-11-22 11:55:10 - DEBUG -->  WS orn_insert : For field SERIECHQ , BTRL4NN  value is not available in LOV
+2012-11-22 11:57:38 - DEBUG -->  WS orn_insert : For field SERIECHQ , BTRL4NN  value is not available in LOV
+2012-11-22 11:58:01 - DEBUG -->  WS orn_insert : For field SERIECHQ , BTRL4NN  value is not available in LOV
+2012-11-22 12:05:40 - DEBUG -->  WS orn_insert : For field SERIECHQ , 'BTRL4NN' value is not available in LOV
+2012-11-22 12:06:03 - DEBUG -->  WS orn_insert : For field SERIECHQ , 'BTRL4NN' value is not available in LOV
+2012-11-22 12:06:57 - DEBUG -->  WS orn_insert : Mandatory Field First Cheque Number is Not Input
+2012-11-22 12:07:27 - DEBUG -->  WS orn_insert : Mandatory Field First Cheque Number is Not Input
+2012-11-22 12:07:37 - DEBUG -->  WS orn_insert : Record Already Exists for Branch-G05:Account Number-G05RONCRT00P2069701:First Cheque Number-80000

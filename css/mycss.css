@@ -1,0 +1,59 @@
+.companii{
+
+    background-color: rgba(193, 178, 168, 0.5);
+    height: 300px;
+    width:250px;
+    margin: 15px;
+    border-radius: 25px;
+    /*opacity: 0.3;
+    filter: alpha(opacity=30)*/
+
+
+}
+.coompan-page-div{
+
+    background-color: rgba(193, 178, 168, 0.5);
+    height: 600px;
+    width:550px;
+    margin: 15px;
+    border-radius: 25px;
+    /*opacity: 0.3;
+    filter: alpha(opacity=30)*/
+
+
+}
+
+.body12 {
+
+    background-image: url("../images/contact-bg.jpg");
+}
+
+.hadder {
+
+    background-image: url("../images/intro-bg.jpg");
+}
+.makeRezBut {
+      border-radius: 25px;
+      background-color: rgba(193, 178, 168, 0.5);
+      border: none;
+      color: white;
+      padding: 35px 84px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+  }
+.erorform {
+background: #ff0000;
+border: 2px solid #ffffff;
+border-radius: 0px;
+color: #ff0000;
+margin-bottom: 16px;}
+
+
+#wrapper {    width:960px; }
+#main {    float:left;
+    width:700px;    padding:0 20px 0 20px; }
+#sidebar {    float:right;    width:200px;    padding:0 10px 0 10px; }

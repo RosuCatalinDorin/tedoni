@@ -1,0 +1,1 @@
+2013-01-04 12:02:10 - DEBUG --> paul.sas WS account_details : The Account Number 632RONCRTO0S5922501 is invalid for the 632 branch

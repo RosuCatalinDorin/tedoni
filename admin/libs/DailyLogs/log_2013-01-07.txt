@@ -1,0 +1,1 @@
+2013-01-07 18:52:15 - DEBUG --> paul.sas WS account_details : The Account Number 97RONCRT00N7983501 is invalid for the 97R branch

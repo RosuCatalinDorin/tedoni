@@ -1,0 +1,1480 @@
+
+
+
+//NON DHTMLX
+if (!Object.keys) {
+    Object.keys = (function() {
+        'use strict';
+        var hasOwnProperty = Object.prototype.hasOwnProperty,
+            hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+            dontEnums = [
+                'toString',
+                'toLocaleString',
+                'valueOf',
+                'hasOwnProperty',
+                'isPrototypeOf',
+                'propertyIsEnumerable',
+                'constructor'
+            ],
+            dontEnumsLength = dontEnums.length;
+
+        return function(obj) {
+            if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
+                throw new TypeError('Object.keys called on non-object');
+            }
+
+            var result = [], prop, i;
+
+            for (prop in obj) {
+                if (hasOwnProperty.call(obj, prop)) {
+                    result.push(prop);
+                }
+            }
+
+            if (hasDontEnumBug) {
+                for (i = 0; i < dontEnumsLength; i++) {
+                    if (hasOwnProperty.call(obj, dontEnums[i])) {
+                        result.push(dontEnums[i]);
+                    }
+                }
+            }
+            return result;
+        };
+    }());
+}
+if (!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function(searchElement, fromIndex) {
+
+        var k;
+
+        // 1. Let O be the result of calling ToObject passing
+        //    the this value as the argument.
+        if (this == null) {
+            throw new TypeError('"this" is null or not defined');
+        }
+
+        var O = Object(this);
+
+        // 2. Let lenValue be the result of calling the Get
+        //    internal method of O with the argument "length".
+        // 3. Let len be ToUint32(lenValue).
+        var len = O.length >>> 0;
+
+        // 4. If len is 0, return -1.
+        if (len === 0) {
+            return -1;
+        }
+
+        // 5. If argument fromIndex was passed let n be
+        //    ToInteger(fromIndex); else let n be 0.
+        var n = +fromIndex || 0;
+
+        if (Math.abs(n) === Infinity) {
+            n = 0;
+        }
+
+        // 6. If n >= len, return -1.
+        if (n >= len) {
+            return -1;
+        }
+
+        // 7. If n >= 0, then Let k be n.
+        // 8. Else, n<0, Let k be len - abs(n).
+        //    If k is less than 0, then let k be 0.
+        k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+        // 9. Repeat, while k < len
+        while (k < len) {
+            // a. Let Pk be ToString(k).
+            //   This is implicit for LHS operands of the in operator
+            // b. Let kPresent be the result of calling the
+            //    HasProperty internal method of O with argument Pk.
+            //   This step can be combined with c
+            // c. If kPresent is true, then
+            //    i.  Let elementK be the result of calling the Get
+            //        internal method of O with the argument ToString(k).
+            //   ii.  Let same be the result of applying the
+            //        Strict Equality Comparison Algorithm to
+            //        searchElement and elementK.
+            //  iii.  If same is true, return k.
+            if (k in O && O[k] === searchElement) {
+                return k;
+            }
+            k++;
+        }
+        return -1;
+    };
+}
+if (!Array.prototype.forEach) {
+
+    Array.prototype.forEach = function(callback, thisArg) {
+
+        var T, k;
+
+        if (this == null) {
+            throw new TypeError(' this is null or not defined');
+        }
+
+        // 1. Let O be the result of calling ToObject passing the |this| value as the argument.
+        var O = Object(this);
+
+        // 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
+        // 3. Let len be ToUint32(lenValue).
+        var len = O.length >>> 0;
+
+        // 4. If IsCallable(callback) is false, throw a TypeError exception.
+        // See: http://es5.github.com/#x9.11
+        if (typeof callback !== "function") {
+            throw new TypeError(callback + ' is not a function');
+        }
+
+        // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+        if (arguments.length > 1) {
+            T = thisArg;
+        }
+
+        // 6. Let k be 0
+        k = 0;
+
+        // 7. Repeat, while k < len
+        while (k < len) {
+
+            var kValue;
+
+            // a. Let Pk be ToString(k).
+            //   This is implicit for LHS operands of the in operator
+            // b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.
+            //   This step can be combined with c
+            // c. If kPresent is true, then
+            if (k in O) {
+
+                // i. Let kValue be the result of calling the Get internal method of O with argument Pk.
+                kValue = O[k];
+
+                // ii. Call the Call internal method of callback with T as the this value and
+                // argument list containing kValue, k, and O.
+                callback.call(T, kValue, k, O);
+            }
+            // d. Increase k by 1.
+            k++;
+        }
+        // 8. return undefined
+    };
+}
+if (!Array.prototype.remove){
+    Array.prototype.remove = function() {
+        var what, a = arguments, L = a.length, ax;
+        while (L && this.length) {
+            what = a[--L];
+            while ((ax = this.indexOf(what)) !== -1) {
+                this.splice(ax, 1);
+            }
+        }
+        return this;
+    };
+}
+if (!Array.prototype.getAllIndexes){
+    Array.prototype.getAllIndexes =function(val){
+        var indexes = [], i;
+        var arr=this;
+        for(i = 0; i < arr.length; i++)
+            if (arr[i] === val) indexes.push(i);
+        return indexes;
+    }
+}
+if (!String.prototype.addSlashes){
+    String.prototype.addSlashes = function() {
+       return (this + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+    }
+}
+if (!String.prototype.trim) {
+    (function() {
+        // Make sure we trim BOM and NBSP
+        var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+        String.prototype.trim = function() {
+            return this.replace(rtrim, '');
+        };
+    })();
+}
+
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
+}
+function xml2json(xml, tab) {
+    var X = {
+        toObj: function(xml) {
+            var o = {};
+            if (xml.nodeType==1) {   // element node ..
+                if (xml.attributes.length)   // element with attributes  ..
+                    for (var i=0; i<xml.attributes.length; i++)
+                        o["@"+xml.attributes[i].nodeName] = (xml.attributes[i].nodeValue||"").toString();
+                if (xml.firstChild) { // element has child nodes ..
+                    var textChild=0, cdataChild=0, hasElementChild=false;
+                    for (var n=xml.firstChild; n; n=n.nextSibling) {
+                        if (n.nodeType==1) hasElementChild = true;
+                        else if (n.nodeType==3 && n.nodeValue.match(/[^ \f\n\r\t\v]/)) textChild++; // non-whitespace text
+                        else if (n.nodeType==4) cdataChild++; // cdata section node
+                    }
+                    if (hasElementChild) {
+                        if (textChild < 2 && cdataChild < 2) { // structured element with evtl. a single text or/and cdata node ..
+                            X.removeWhite(xml);
+                            for (var n=xml.firstChild; n; n=n.nextSibling) {
+                                if (n.nodeType == 3)  // text node
+                                    o["#text"] = X.escape(n.nodeValue);
+                                else if (n.nodeType == 4)  // cdata node
+                                    o["#cdata"] = X.escape(n.nodeValue);
+                                else if (o[n.nodeName]) {  // multiple occurence of element ..
+                                    if (o[n.nodeName] instanceof Array)
+                                        o[n.nodeName][o[n.nodeName].length] = X.toObj(n);
+                                    else
+                                        o[n.nodeName] = [o[n.nodeName], X.toObj(n)];
+                                }
+                                else  // first occurence of element..
+                                    o[n.nodeName] = X.toObj(n);
+                            }
+                        }
+                        else { // mixed content
+                            if (!xml.attributes.length)
+                                o = X.escape(X.innerXml(xml));
+                            else
+                                o["#text"] = X.escape(X.innerXml(xml));
+                        }
+                    }
+                    else if (textChild) { // pure text
+                        if (!xml.attributes.length)
+                            o = X.escape(X.innerXml(xml));
+                        else
+                            o["#text"] = X.escape(X.innerXml(xml));
+                    }
+                    else if (cdataChild) { // cdata
+                        if (cdataChild > 1)
+                            o = X.escape(X.innerXml(xml));
+                        else
+                            for (var n=xml.firstChild; n; n=n.nextSibling)
+                                o["#cdata"] = X.escape(n.nodeValue);
+                    }
+                }
+                if (!xml.attributes.length && !xml.firstChild) o = null;
+            }
+            else if (xml.nodeType==9) { // document.node
+                o = X.toObj(xml.documentElement);
+            }
+            else
+                alert("unhandled node type: " + xml.nodeType);
+            return o;
+        },
+        toJson: function(o, name, ind) {
+            var json = name ? ("\""+name+"\"") : "";
+            if (o instanceof Array) {
+                for (var i=0,n=o.length; i<n; i++)
+                    o[i] = X.toJson(o[i], "", ind+"\t");
+                json += (name?":[":"[") + (o.length > 1 ? ("\n"+ind+"\t"+o.join(",\n"+ind+"\t")+"\n"+ind) : o.join("")) + "]";
+            }
+            else if (o == null)
+                json += (name&&":") + "null";
+            else if (typeof(o) == "object") {
+                var arr = [];
+                for (var m in o)
+                    arr[arr.length] = X.toJson(o[m], m, ind+"\t");
+                json += (name?":{":"{") + (arr.length > 1 ? ("\n"+ind+"\t"+arr.join(",\n"+ind+"\t")+"\n"+ind) : arr.join("")) + "}";
+            }
+            else if (typeof(o) == "string")
+                json += (name&&":") + "\"" + o.toString() + "\"";
+            else
+                json += (name&&":") + o.toString();
+            return json;
+        },
+        innerXml: function(node) {
+            var s = ""
+            if ("innerHTML" in node)
+                s = node.innerHTML;
+            else {
+                var asXml = function(n) {
+                    var s = "";
+                    if (n.nodeType == 1) {
+                        s += "<" + n.nodeName;
+                        for (var i=0; i<n.attributes.length;i++)
+                            s += " " + n.attributes[i].nodeName + "=\"" + (n.attributes[i].nodeValue||"").toString() + "\"";
+                        if (n.firstChild) {
+                            s += ">";
+                            for (var c=n.firstChild; c; c=c.nextSibling)
+                                s += asXml(c);
+                            s += "</"+n.nodeName+">";
+                        }
+                        else
+                            s += "/>";
+                    }
+                    else if (n.nodeType == 3)
+                        s += n.nodeValue;
+                    else if (n.nodeType == 4)
+                        s += "<![CDATA[" + n.nodeValue + "]]>";
+                    return s;
+                };
+                for (var c=node.firstChild; c; c=c.nextSibling)
+                    s += asXml(c);
+            }
+            return s;
+        },
+        escape: function(txt) {
+            return txt.replace(/[\\]/g, "\\\\")
+                .replace(/[\"]/g, '\\"')
+                .replace(/[\n]/g, '\\n')
+                .replace(/[\r]/g, '\\r');
+        },
+        removeWhite: function(e) {
+            e.normalize();
+            for (var n = e.firstChild; n; ) {
+                if (n.nodeType == 3) {  // text node
+                    if (!n.nodeValue.match(/[^ \f\n\r\t\v]/)) { // pure whitespace text node
+                        var nxt = n.nextSibling;
+                        e.removeChild(n);
+                        n = nxt;
+                    }
+                    else
+                        n = n.nextSibling;
+                }
+                else if (n.nodeType == 1) {  // element node
+                    X.removeWhite(n);
+                    n = n.nextSibling;
+                }
+                else                      // any other node
+                    n = n.nextSibling;
+            }
+            return e;
+        }
+    };
+    if (xml.nodeType == 9) // document node
+        xml = xml.documentElement;
+    var json = X.toJson(X.toObj(X.removeWhite(xml)), xml.nodeName, "\t");
+    return "{\n" + tab + (tab ? json.replace(/\t/g, tab) : json.replace(/\t|\n/g, "")) + "\n}";
+}
+
+
+var Base64 = {
+
+// private property
+    _keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+
+// public method for encoding
+    encode : function (input) {
+        var output = "";
+        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+        var i = 0;
+
+        input = Base64._utf8_encode(input);
+
+        while (i < input.length) {
+
+            chr1 = input.charCodeAt(i++);
+            chr2 = input.charCodeAt(i++);
+            chr3 = input.charCodeAt(i++);
+
+            enc1 = chr1 >> 2;
+            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+            enc4 = chr3 & 63;
+
+            if (isNaN(chr2)) {
+                enc3 = enc4 = 64;
+            } else if (isNaN(chr3)) {
+                enc4 = 64;
+            }
+
+            output = output +
+                this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
+                this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
+
+        }
+
+        return output;
+    },
+
+// public method for decoding
+    decode : function (input) {
+        var output = "";
+        var chr1, chr2, chr3;
+        var enc1, enc2, enc3, enc4;
+        var i = 0;
+
+        input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+
+        while (i < input.length) {
+
+            enc1 = this._keyStr.indexOf(input.charAt(i++));
+            enc2 = this._keyStr.indexOf(input.charAt(i++));
+            enc3 = this._keyStr.indexOf(input.charAt(i++));
+            enc4 = this._keyStr.indexOf(input.charAt(i++));
+
+            chr1 = (enc1 << 2) | (enc2 >> 4);
+            chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+            chr3 = ((enc3 & 3) << 6) | enc4;
+
+            output = output + String.fromCharCode(chr1);
+
+            if (enc3 != 64) {
+                output = output + String.fromCharCode(chr2);
+            }
+            if (enc4 != 64) {
+                output = output + String.fromCharCode(chr3);
+            }
+
+        }
+
+        output = Base64._utf8_decode(output);
+
+        return output;
+
+    },
+
+// private method for UTF-8 encoding
+    _utf8_encode : function (string) {
+        string = string.replace(/\r\n/g,"\n");
+        var utftext = "";
+
+        for (var n = 0; n < string.length; n++) {
+
+            var c = string.charCodeAt(n);
+
+            if (c < 128) {
+                utftext += String.fromCharCode(c);
+            }
+            else if((c > 127) && (c < 2048)) {
+                utftext += String.fromCharCode((c >> 6) | 192);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+            else {
+                utftext += String.fromCharCode((c >> 12) | 224);
+                utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+
+        }
+
+        return utftext;
+    },
+
+// private method for UTF-8 decoding
+    _utf8_decode : function (utftext) {
+        var string = "";
+        var i = 0;
+        var c = c1 = c2 = 0;
+
+        while ( i < utftext.length ) {
+
+            c = utftext.charCodeAt(i);
+
+            if (c < 128) {
+                string += String.fromCharCode(c);
+                i++;
+            }
+            else if((c > 191) && (c < 224)) {
+                c2 = utftext.charCodeAt(i+1);
+                string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                i += 2;
+            }
+            else {
+                c2 = utftext.charCodeAt(i+1);
+                c3 = utftext.charCodeAt(i+2);
+                string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                i += 3;
+            }
+
+        }
+
+        return string;
+    }
+
+}
+
+function yyyy_mm_ddToDate(str){
+    str=str.split("-");
+    return new Date(str[0], str[1] - 1, str[2]);
+
+}
+
+function popup(url) {
+    params  = 'width='+(screen.width-40);
+    params += ', height='+(screen.height-120);
+    params += ', top=10, left=10'
+    params += '';
+
+    newwin=window.open(url,'windowname4', params);
+    if (window.focus) {newwin.focus()}
+    return false;
+}
+function popup_file(url) {
+    document.getElementById('download_frame').src = url;
+}
+
+function getAge(d1, d2){
+    d2 = d2 || new Date();
+    var diff = d2.getTime() - d1.getTime();
+    return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+}
+function numePeCard(val){
+    if (val.length>24) return false;
+    else return true;
+}
+function isMobilePhone(val){
+    if (val.length!=10) return false;
+    return new RegExp("07[0-9]{8}").test(val);
+}
+function isXLS(val){
+    return true;
+}
+function hasNameLastName(val){
+    var names=val.split(' ');
+    if (names.length>=2) return true;
+    else return false;
+}
+
+function count(prop,data){
+    return data.length;
+
+}
+
+
+screens_functions=new Object();
+/* client_details */
+screens_functions.activeScreen=function(){
+    return main.layout.getActiveItem();
+};
+screens_functions.activeWindow=function(){
+    var win=myWins.getTopmostWindow(true)
+    return win.screenName;
+};
+screens_functions.clearHiddenFormContaine = function(){
+    document.getElementById('hidden_form_container').innerHTML='';
+}
+
+function SetPopupCardImage(myPop1){
+    myPop1.layout=myPop1.attachLayout(410,315,'1C');
+    myPop1.layout.cells('a').hideHeader();
+
+    myPop1.tool=myPop1.layout.attachToolbar();
+    myPop1.tool.setIconsPath('icons/');
+    myPop1.tool.addSeparator('sep1',1);
+    myPop1.tool.addButton('close',2,"Inchide",'Exit.png')
+    myPop1.tool.hideItem('sep1');
+    myPop1.tool.addSpacer('sep1');
+    myPop1.tool.attachEvent('onClick',function(id){
+        if (id=='close') myPop1.hide();
+
+    });
+
+    myPop1.layout.attachEvent("onContentLoaded", function(name){
+        myPop1.layout.cells('a').progressOff();
+    });
+
+    myPop1.layout.cells('a').progressOn();
+    myPop1.layout.cells('a').attachURL('http://rzs01cj001.bt.wan:8080/OberthurBT/Handlers/OberthurWS.ashx?irn='+myPop1.irn.split(" - ")[0]);
+}
+screens_functions.showIrnImage=function(irn,screenName){
+    if (irn == null) return false;
+    if (!screenName) screenName=screens_functions.activeWindow();
+    var el;
+    switch (screenName){
+        case 'new_card': el=screens[screenName].ids.new_card_titular_form.getCombo('irn');el=el.base;break;
+        case 'add_card_holder': el=screens[screenName].ids.card_holder_form.getCombo('irn');el=el.base;break;
+        default : return false;
+    }
+    pop=initPopup(screenName,el,null,'right','irn_picture',true);
+    pop.irn=irn;
+    SetPopupCardImage(pop);
+    pop.show();
+};
+
+screens_functions.setTimeOut = function(object,func,time_limit,repetitions){
+    if (!object.timeout && typeof func == 'function') {
+        object.timeout=new Object();
+        object.timeout.contor=0;
+        object.timeout.func= func;
+        object.timeout.time_limit=time_limit;
+        object.timeout.repetitions=repetitions;
+        object.timeout.timer=null;
+
+    }
+    if (typeof object.timeout.repetitions == "number" && object.timeout.contor>=object.timeout.repetitions) {
+        object.timeout.timer=null;
+        return;
+    }
+
+    if (typeof object.timeout.func !="function" || typeof screens[object.screenName] !="object") {
+        object.timeout.timer=null;
+        return;
+    }
+    object.timeout.contor++;
+    object.timeout.func();
+    object.timeout.timer=setTimeout(function(){screens_functions.setTimeOut(object)},object.timeout.time_limit);
+}
+
+screens_functions.client_details = {
+
+    loadClientDetails:function(screenName){
+        var id_client=screenName.split("<::>")[1];
+
+        screens_functions.client_details.CereriInLucru_load(screenName);
+
+        //Carduri emise si nepredate
+
+        grid=screens[screenName].ids.carduri_in_lucru_grid;
+        window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+        window.dhx4.ajax.cache = true;
+        grid.load(system.services.cardsInProgress+'?cust_no='+id_client,'json');
+        grid.enableContextMenu(screens[screenName].ids.carduri_in_lucru_menu);
+
+        //carduri active
+
+        grid=screens[screenName].ids.carduri_active_grid;
+        window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+        window.dhx4.ajax.cache = true;
+        grid.load(system.services.cardsActive+id_client,'json');
+
+        grid.enableContextMenu(screens[screenName].ids.client_details_carduri_active_menu);
+
+
+        //carduri inchise
+
+        grid=screens[screenName].ids.carduri_inactive_grid;
+        window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+        window.dhx4.ajax.cache = true;
+        grid.load(system.services.cardsInactive+id_client,'json');
+        //grid.enableContextMenu(screens[screenName].ids.client_details_carduri_active_menu);
+
+
+        //list conturi
+
+        grid = new dhtmlXGridObject(screens[screenName].ids.client_details_form.getContainer("cont_grid"));
+        screens[screenName].ids.accounts=grid;
+        grid.setHeader('Cont ,Branch,  Clasa cont,Valuta,Descriere cont,Data deschidere,');
+        grid.setColTypes("ro,ro,ro,ro,ro,ro,ro");
+        grid.setInitWidths("160,80,60,60,*,80,130");
+        grid.attachEvent("onXLE",function(){
+            //ACCESS_LEVEL : cerere noua
+            if (system.auth.profile[0]==1)   this.forEachRow(function(row_id){
+                var grid=screens[screens_functions.activeScreen()].ids.accounts;
+                grid.cells(row_id,6).setValue('<div  class="dhxform_item_label_left button_save" style="padding: 3px"><div dir="ltr" tabindex="0" role="link" class="dhxform_btn" onmouseover="this.className=\'dhxform_btn dhxform_btn_over\'" onmouseout="this.className=\'dhxform_btn\'" onclick="screens_functions.client_details.new_card(\''+row_id+'\')"  style="margin: 0px"><div class="dhxform_btn_txt">Cerere card</div></div></div>');
+
+
+
+            });
+            else this.setColumnHidden(6,true);
+            // END ACCES_LEVEL
+        });
+        grid.init();
+        window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+        window.dhx4.ajax.cache = true;
+        grid.load(system.services.client_accounts+"?cust_no="+id_client+"&account_class=CTCRT0",'json');
+    },
+    onInitComplete:function(screenName){
+
+
+        var id_client=screenName.split("<::>")[1];
+        screens[screenName].ids.client_details.progressOn();
+        //window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+        window.dhx4.ajax.cache = true;
+        screens[screenName].ids.cereri_in_lucru_layout.cells('b').hideHeader();
+        screens[screenName].ids.client_details_form.loadJSON(system.services.client_details+'?CUSTOMER_NO='+id_client,function(data,form,err){
+
+            if (!err){
+                screens['main'].ids.sidebar.items(form.screenName).setText({text: data.CUTOMER_NAME1});
+                screens[form.screenName].ids.client_details.progressOff();
+                screens_functions.client_details.loadClientDetails(form.screenName);
+            }
+            else {
+                _error('Dosar client...','Clientul nu a putu fi gasit in sistem !!');
+                screens['main'].functions.removeItem(form.screenName);
+
+
+            }
+
+        },'dbQueryCustomersOutput[0]');
+
+        //ACCESS_LEVEL: inchidere/reemitere carduri , resetare contor pin
+        var menu=screens[screenName].ids.client_details_carduri_active_menu;
+        if (system.auth.profile[5]==0){
+            menu.hideItem('reemit');menu.hideItem('close');
+
+        }
+        if (system.auth.profile[7]==0) menu.hideItem('reset_pin');
+        if (system.auth.profile[4]==0 && system.auth.profile[7]==0) menu.hideItem('sep1');
+        if (system.auth.profile[5]==0 && system.auth.profile[0]==0) menu.hideItem('sep2');
+
+
+
+        // END ACCES LEVEL inchidere/reemitere carduri
+
+        screens[screenName].ids.on_empty_grid_menu.addContextZone(screens[screenName].ids.carduri_active_grid.entBox.id);
+        screens[screenName].ids.on_empty_grid_menu.addContextZone(screens[screenName].ids.carduri_in_lucru_grid.entBox.id);
+        screens[screenName].ids.on_empty_grid_menu.addContextZone(screens[screenName].ids.carduri_inactive_grid.entBox.id);
+
+    },
+    CereriInLucru_load:function(screenName){
+        //alert(screens[screenName].ids.cereri_in_lucru_toolbar.getGroupSelected('grup_1'));
+        var id_client=screenName.split("<::>")[1];
+        var grid=screens[screenName].ids.cereri_in_lucru_grid;
+        window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+        window.dhx4.ajax.cache = true;
+        var stats=screens[screenName].ids.cereri_in_lucru_toolbar.getGroupSelected('grup_1')=='CL'?'NEW,In Aprobare Centrala,Trimis Spre Aprobare Centrala':'PROCESATA,RESPINSA';
+        grid.load(system.services.cardRequestsMS+'?cust_no='+id_client+'&status='+stats,'json');
+        grid.enableContextMenu(screens[screenName].ids.cereri_in_lucru_menu);
+        /*grid.attachEvent("onBeforeContextMenu",function(rid,cell,grid){
+            if (grid.cells(rid,10).getValue()!='NEW'){
+                screens[grid.screenName].ids.cereri_in_lucru_menu.setItemDisabled('add_posesor');
+                screens[grid.screenName].ids.cereri_in_lucru_menu.setItemDisabled('process_request');
+                screens[grid.screenName].ids.cereri_in_lucru_menu.setItemDisabled('update_client');
+                screens[grid.screenName].ids.cereri_in_lucru_menu.setItemDisabled('delete_request');
+            }
+            else {
+                screens[grid.screenName].ids.cereri_in_lucru_menu.setItemEnabled('add_posesor');
+                screens[grid.screenName].ids.cereri_in_lucru_menu.setItemEnabled('process_request');
+                screens[grid.screenName].ids.cereri_in_lucru_menu.setItemEnabled('update_client');
+                screens[grid.screenName].ids.cereri_in_lucru_menu.setItemEnabled('delete_request');
+            }
+
+            return true;
+        })*/
+    },
+    CereriInLucru_onXLE:function(grid){
+
+        var txt=screens[grid.screenName].ids.cereri_in_lucru_toolbar.getGroupSelected('grup_1')=='CL'?'in lucru':'in arhiva';
+        screens[grid.screenName].ids.client_details.cells('cereri_in_lucru').setText("Cereri de card "+txt+": "+grid.getRowsNum());
+        grid.forEachRow(function(id){
+            if (this.cells(id,6).getValue()==this.screenName.split("<::>")[1])
+                this.cells(id,0).setValue(system.services.cardsOnRequest+'?ref_no='+encodeURI(id));
+            else this.cells(id,0).setValue(system.services.cardsOnRequest+'?ref_no='+encodeURI(id)+'&cust_no='+this.screenName.split("<::>")[1]);
+        })
+        grid.selectRow(0);
+
+    },
+    CereriInLucru_deleteRequest:function(screenName){
+        grid= screens[screenName].ids.cereri_in_lucru_grid;
+        rid=grid.getSelectedRowId();
+        dhtmlx.confirm({
+            title: "Stergere cerere de carduri",
+            type: "confirm-warning",
+            text: 'Confirmati stergerea cererii de carduri cu numarul <b>'+grid.cells(rid,1).getValue()+'</b> ?',
+            ok: "DA",
+            cancel: "NU",
+            callback: function (status) {
+                if (status) {
+                    main.layout.progressOn();
+                    window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+                    window.dhx4.ajax.cache = true;      //?taskId=3dc9e221-5313-460c-8558-9f1652c8407a&userId=soa_test1&taskOutcome=APPROVE
+                    dhx4.ajax.get(system.services.deleteRequest+'?REF_NO='+rid+'&user_ad='+system.auth.user,function(loader){
+                        main.layout.progressOff();
+                        if (loader.xmlDoc.status==200 ){
+                            var err=false;
+                            var msg='';
+                            try {
+                                msg=JSON.parse(loader.xmlDoc.responseText);
+                                msg=msg.out_message
+                            }
+                            catch (e){
+                                err=e;
+                            }
+                            if (!!err) {
+                                _error('Stergere cerere de carduri','Cererea nu a putut fi stearsa : '+err)
+                            }
+                            else {
+                                //msg=msg.split("<::>")
+                                if (msg=="DELETED"){
+                                    dhtmlx.message({text:'Cererea de carduri a fost stearsa',expire:3000});
+                                    screens_functions.client_details.CereriInLucru_load(screenName);
+                                }
+                                else _error('Stergere cerere de carduri',msg);
+
+                            }
+                        }
+                        else {
+                            _error("Stergere cerere de carduri","Cererea nu a putut fi stearsa :  <br> "+loader.xmlDoc.status+' '+loader.xmlDoc.statusText)
+                        }
+                    });
+
+                }
+            }
+        })
+
+    },
+    CereriInLucru_onSubGridCreated:function(subGrid,screenName){
+        subGrid.attachEvent('onSelectStateChanged',function(rid){
+            var mrid=rid.split(':')[0];
+            screens[screenName].ids.cereri_in_lucru_history_layout.cells('b').setText('Istoric card : '+this.cells(rid,1).getValue()+' - '+this.cells(rid,3).getValue()+' ('+this.cells(rid,2).getValue()+')');
+            screens[screenName].ids.cereri_in_lucru_history_layout.cells('b').expand();
+            if (screens[screenName].ids.cereri_in_lucru_grid.getSelectedRowId()!=mrid)
+                screens[screenName].ids.cereri_in_lucru_grid.selectRowById(mrid);
+            window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+            screens[screenName].ids.card_history.load(system.services.cardHistory+rid.split(":")[1],'json');
+        });
+        return true;
+    },
+    CereriInLucru_onSelect:function(rowId,screenName){
+        var g=screens[screenName].ids.cereri_in_lucru_grid;
+        screens[screenName].ids.cereri_in_lucru_history_layout.cells('a').setText('Istoric cerere : '+g.cells(rowId,1).getValue()+' - '+g.cells(rowId,6).getValue());
+        window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+        screens[screenName].ids.request_history.load(system.services.requestHistory+rowId,'json');
+
+
+        if (typeof g.cells(rowId,0).cell._sub_grid == 'object'){
+            var sid=g.cells(rowId,0).cell._sub_grid.getSelectedRowId();
+            if (sid){
+                screens[screenName].ids.cereri_in_lucru_history_layout.cells('b').expand();
+                //alert(sid);
+            }
+            else {
+                screens[screenName].ids.request_history.clearAll();
+                screens[screenName].ids.cereri_in_lucru_history_layout.cells('b').collapse();
+            }
+        }else {
+            screens[screenName].ids.request_history.clearAll();
+            screens[screenName].ids.cereri_in_lucru_history_layout.cells('b').collapse();
+        }
+
+
+    },
+    CereriInLucru_setHistory:function(grid){
+        var screnName=grid.screenName;
+        var l=screens[screnName].ids.cereri_in_lucru_layout;
+        if (l.cells('b').isCollapsed()) l.cells('b').expand();
+        else l.cells('b').collapse();
+    },
+    CarduriInLucru_onXLE:function(grid){
+        screens[grid.screenName].ids.client_details.cells('carduri_in_lucru').setText("Carduri emise si nepredate: "+grid.getRowsNum());
+    },
+
+    CereriInLucru_setContextMenu:function(args){
+
+        var grid=args[2];
+        var mrid=args[0];
+        menu=screens[grid.screenName].ids.cereri_in_lucru_menu;
+
+        if (!grid.doesRowExist(mrid)) {
+            mrid=args[0].split(":")[0];
+            var srid=args[0];
+            var grid_s=grid.cells(mrid,0).cell._sub_grid;
+            grid_s.selectRowById(args[0]);
+            if (grid_s.cells(srid,0).getValue()=='POSESOR'){
+                menu.showItem('update_posesor');
+                menu.showItem('delete_posesor');
+
+
+            }
+            else {
+                menu.hideItem('update_posesor');
+                menu.hideItem('delete_posesor');
+            }
+        }else{
+            menu.hideItem('update_posesor');
+            menu.hideItem('delete_posesor');
+        }
+
+
+        grid.selectRowById(mrid);
+
+        if (grid.cells(mrid,6).getValue()!=grid.screenName.split("<::>")[1]){
+            menu.hideItem('add_posesor');menu.hideItem('update_posesor');menu.hideItem('delete_posesor');menu.hideItem('sep3');menu.hideItem('sep2');menu.hideItem('process_request');
+            menu.hideItem('update_client');menu.hideItem('delete_request');menu.showItem('open_client');
+        }
+        else {
+            menu.showItem('add_posesor');menu.showItem('update_posesor');menu.showItem('delete_posesor');menu.showItem('sep3');menu.showItem('sep2');menu.showItem('process_request');
+            menu.showItem('update_client');menu.showItem('delete_request');menu.hideItem('open_client');
+        }
+
+        if (screens[grid.screenName].ids.cereri_in_lucru_layout.cells('b').isCollapsed()){
+            menu.showItem('view_history');
+            menu.hideItem('close_history');
+        }else{
+            menu.hideItem('view_history');
+            menu.showItem('close_history');
+        }
+        if (grid_s && grid_s.cells(srid,0).getValue()=='POSESOR' && grid.cells(mrid,6).getValue()==grid.screenName.split("<::>")[1]){
+            menu.showItem('update_posesor');
+            menu.showItem('delete_posesor');
+
+
+        }
+        else {
+            menu.hideItem('update_posesor');
+            menu.hideItem('delete_posesor');
+        }
+
+        if (grid.cells(mrid,10).getValue()!='NEW'){
+            menu.setItemDisabled('add_posesor');
+            menu.setItemDisabled('process_request');
+            menu.setItemDisabled('update_client');
+            menu.setItemDisabled('delete_request');
+            menu.setItemDisabled('update_posesor');
+            menu.setItemDisabled('delete_posesor');
+        }
+        else {
+            menu.setItemEnabled('add_posesor');
+            menu.setItemEnabled('process_request');
+            menu.setItemEnabled('update_client');
+            menu.setItemEnabled('delete_request');
+            menu.setItemEnabled('delete_posesor');
+            if (grid_s && grid_s.cells(srid,2).getValue().length==7)
+                menu.setItemEnabled('update_posesor');
+            else menu.setItemDisabled('update_posesor');
+        }
+
+        if (system.auth.profile[19]==0) menu.hideItem('add_posesor');
+        if (system.auth.profile[20]==0) menu.hideItem('process_request');
+        if (system.auth.profile[21]==0) {
+            menu.hideItem('update_posesor');menu.hideItem('update_client');
+        }
+
+
+        return true
+    },
+    CereriInLucru_addHolder:function(screenName){
+        initScreen(main,'add_card_holder');
+        var f = screens['add_card_holder'].ids.card_holder_form;
+        var g = screens[screenName].ids.cereri_in_lucru_grid;
+        var rid= g.getSelectedRowId();
+        f.setItemValue('titular', g.getUserData(rid,'titular'));
+        f.setItemValue('cnp', g.getUserData(rid,'cnp'));
+        f.setItemValue('cont', g.cells(rid,7).getValue());
+        f.setItemValue('req_ref_no', rid);
+        f.setItemValue('cat_card', g.getUserData(rid,'tip_card'));
+
+        var prods= f.getCombo('tip_card');
+        window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+        window.dhx4.ajax.cache = true;
+        screens['add_card_holder'].loads++;
+        prods.load(system.services.cardsForHolders+encodeURI(rid),function(){
+            screens['add_card_holder'].loads--;
+            if (screens['add_card_holder'].loads==0) screens['add_card_holder'].ids.add_card_holder.progressOff();});
+        prods.setComboText(' - Selectati cel putin o optiune -',false);
+
+
+    },
+
+    updateClientData:function(screenName,tip_posesor){
+
+        grid=screens[screenName].ids.cereri_in_lucru_grid;
+        var ref_no=grid.getSelectedRowId();
+        var id_cl;
+        var id_client=id_cl=grid.cells(ref_no,6).getValue();
+        if (tip_posesor=='Posesor'){
+
+            grid=grid.cells(ref_no,0).cell._sub_grid;
+            var r_id=grid.getSelectedRowId();
+            id_cl=grid.cells(r_id,2).getValue();
+        }
+        var str='cust_no='+id_cl+'&nr_cerere='+ref_no+'&maker_user='+system.auth.user;
+        dhtmlx.confirm({
+            title: "Actualizare date client - FLEX",
+            type: "confirm-warning",
+            text: 'Confirmati actualizarea datelor de pe cererea de card cu cele din FLEX pentru client <b>'+id_cl+'</b> ?',
+            ok: "DA",
+            cancel: "NU",
+            callback: function (status) {
+                if (status) {
+                    main.progressOn();
+                    window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+                    var loader=window.dhx4.ajax.get(system.services.updateClientData+"?"+str,function(){
+                        main.progressOff();
+                        var err=false;
+                        if (loader.xmlDoc.status==200 ) {
+                            try {
+                                var res = JSON.parse(loader.xmlDoc.responseText);
+                                if (res.response_message!='OK' ) {
+                                    err=res.result;
+                                }
+
+                            }
+                            catch (e) {
+                                err = true;
+                            }
+                            if (!!err) {
+                                _error('Actualizare date client - FLEX','Eroare la actualizarea datelor : ' + err)
+                            }
+                            else {
+                                dhtmlx.message({text:"Date client actualizate cu succes !!",expire:3000});
+                                var screenName=screens_functions.activeScreen();
+                                var id_client=screenName.split("<::>")[1];
+                                var grid=screens[screenName].ids.cereri_in_lucru_grid;
+                                window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+                                window.dhx4.ajax.cache = true;
+                                var stats=screens[screenName].ids.cereri_in_lucru_toolbar.getGroupSelected('grup_1')=='CL'?'NEW,In Aprobare Centrala,Trimis Spre Aprobare Centrala':'PROCESATA,RESPINSA';
+                                grid.load(system.services.cardRequestsMS+'?cust_no='+id_client+'&status='+stats,'json');
+                            }
+                        }
+                        else _error('Actualizare date client - FLEX','Eroare la actualizarea datelor : '+loader.xmlDoc.status+' - '+loader.xmlDoc.statusText);
+                    });
+
+
+                }
+            }
+        });
+
+    },
+
+    CarduriInLucru_viewHistory:function(screenName){
+        var g=screens[screenName].ids.carduri_in_lucru_grid;
+        var cardId=g.getSelectedRowId();
+
+        w=initScreen(main,'cardHistory');
+        //debugger;
+        w.ids.cardHistory.setText('Istoric card '+ g.cells(cardId,7).getValue()+' ( '+ g.cells(cardId,2).getValue()+' ) - '+g.cells(cardId,3).getValue());
+        w.functions.loadHistory(cardId);
+    },
+    CarduriInLucru_openActivity:function(screenName,grid){
+        var g=screens[screenName].ids.carduri_in_lucru_grid;
+        var cardId=g.getSelectedRowId();
+        var pan =  g.cells(cardId,2).getValue();
+        w=initScreen(main,'cardTask');
+        w.ids.task_toolbar.setValue('ref_no', g.getUserData(cardId,'req_ref_no'));
+        w.ids.task_toolbar.setValue('pan',pan);
+        w.ids.task_toolbar.setValue('name', g.cells(cardId,3).getValue());
+        w.ids.task_toolbar.setValue('tip_card', g.cells(cardId,7).getValue());
+        w.functions.reloadGrid();
+    },
+
+    CarduriActive_onXLE:function(grid){
+
+        screens[grid.screenName].ids.client_details.cells('carduri_active').setText("Carduri active: "+grid.getRowsNum());
+
+        screens_functions.client_details.getSMSDetails(grid);
+    },
+    CarduriActive_setContextMenu:function(params){
+        var id=params[0];
+        var grid=params[2];
+        var menu=screens[grid.screenName].ids.client_details_carduri_active_menu;
+        //ACCESS_LEVEL:cerere posesor desemnat
+        if (grid.cells(id,1).getValue()=='NU' || system.auth.profile[0]==0) menu.hideItem('posesor');
+        else menu.showItem('posesor');
+
+        // END ACCESS_LEVEL:cerere posesor desemnat
+
+        switch (grid.cells(id,8).getValue()){
+            case 'Card valid':
+            case 'Card nou emis - asteapta activare ATM':
+            case 'Card reemis - asteapta activare ATM':  menu.hideItem('unlock');menu.showItem('lock');break;
+            case 'Card blocat temporar': menu.showItem('unlock');menu.hideItem('lock');break;
+            default :menu.hideItem('lock');menu.hideItem('unlock');
+        }
+        //ACCES_LEVEL blocare/deblocare card
+        if (system.auth.profile[8]==0) menu.hideItem('lock');
+        if (system.auth.profile[9]==0) menu.hideItem('unlock');
+        //  END ACCESS_LEVEL
+
+        //ACCESS_LEVEL:sms alert
+        if (system.auth.profile[4]==1){
+            var staus_flag=grid.getUserData(id,"smsServiceStatusFlag");
+            switch (staus_flag) {
+                case 0:
+                case 1:menu.hideItem('activate_sms');menu.showItem('modify_sms');menu.showItem('deactivate_sms');menu.showItem('print_sms_request');menu.showItem('sms');break;
+                case 2:menu.showItem('activate_sms');menu.hideItem('modify_sms');menu.hideItem('deactivate_sms');menu.hideItem('print_sms_request');menu.showItem('sms');break;
+                default:menu.hideItem('activate_sms');menu.hideItem('modify_sms');menu.hideItem('deactivate_sms');menu.hideItem('print_sms_request');menu.hideItem('sms');break;
+            }
+        }
+        else {
+            menu.hideItem('deactivate_sms');menu.hideItem('activate_sms');menu.hideItem('modify_sms');menu.hideItem('sms');
+        }
+
+        if (system.auth.profile[22]==0 && system.auth.profile[23]==0 ) menu.hideItem('transfer_card_pin');
+        else {
+            if (system.auth.profile[22]==0) menu.hideItem('transfer');
+            if (system.auth.profile[23]==0) menu.hideItem('transfer_pin');
+        }
+        // END ACCESS_LEVEL sms alert
+
+
+
+
+        grid.selectRowById(id);return true;
+    },
+    CarduriActive_resetPin:function(){
+        var scr=screens_functions.activeScreen();
+
+        var grid=screens[scr].ids.carduri_active_grid;
+        var pan=grid.getSelectedRowId();
+        dhtmlx.confirm({
+            title: "Resetare PIN card",
+            type: "confirm-warning",
+            text: 'Confirmati resetarea PIN-ului pentru cardul cu numarul <b>'+grid.cells(pan,3).getValue()+'</b>, posesor de card <b>'+grid.cells(pan,4).getValue()+'</b> ?',
+            ok: "DA",
+            cancel: "NU",
+            callback: function (status) {
+                if (status) {
+                    main.layout.progressOn();
+                    window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+                    window.dhx4.ajax.cache = true;      //?taskId=3dc9e221-5313-460c-8558-9f1652c8407a&userId=soa_test1&taskOutcome=APPROVE
+                    var loader=dhx4.ajax.get(system.services.resetPin+'?cust_no='+screens_functions.activeScreen().split("<::>")[1]+'&card_num='+grid.getSelectedRowId()+'&user_ad='+system.auth.user,function(loader){
+                        main.layout.progressOff();
+                        if (loader.xmlDoc.status==200 ){
+                            var err=false;
+                            var msg='';
+                            try {
+                                msg=JSON.parse(loader.xmlDoc.responseText);
+                                msg=msg.message
+                            }
+                            catch (e){
+                                err=e;
+                            }
+                            if (!!err) {
+                                _error('Resetare PIN card','Pinul cardului nu a putut fi resetat !! '+err)
+                            }
+                            else {
+                                msg=msg.split("<::>")
+                                switch (msg[0]){
+                                    case "UPDATE":dhtmlx.message({text:msg[1],expire:3000});break;
+                                    //case "NO UPDATE":_error('Resetare PIN card',msg[1]);break;
+                                    default :_error('Resetare PIN card',msg[1]);break;
+                                }
+                            }
+                        }
+                        else {
+                            _error("Resetare pin","Pinul cardului nu a putut fi resetat !! <br> "+loader.xmlDoc.status+' '+loader.xmlDoc.statusText)
+                        }
+                    });
+
+                }
+            }
+        })
+    },
+    CarduriActive_addPosesor:function(screenName){
+
+        var cf=screens[screenName].ids.client_details_form;
+        var gf=screens[screenName].ids.carduri_active_grid;
+        var gf_rid=gf.getSelectedRowId();
+        var cont=gf.cells(gf_rid,4).getValue();
+
+        if (gf.cells(gf_rid,12).getValue()=='') {
+            _error('Adaugare posesor desemnat','Erroare: Tipul cardului nu poate fi identificat , va rugam contactati echipa de suport !');
+            return ;
+        }
+        if (!screens[screenName].ids.accounts.doesRowExist(cont)){
+            _error('Adaugare posesor desemnat','Erroare: Contul '+gf.cells(gf_rid,4).getValue()+' atasat cardului de titular nu este un cont curent valid!');
+            return ;
+        }
+
+        var s=initScreen(main,'add_card_holder');
+        s.functions.setPosesorType();
+        var f= s.ids.card_holder_form;
+
+        f.setItemValue('CUSTOMER_NO', cf.getItemValue('CUSTOMER_NO'));
+        f.setItemValue('titular', cf.getItemValue('CUTOMER_NAME1'));
+        f.setItemValue('cnp', cf.getItemValue('SHORT_NAME'));
+        f.setItemValue('CUSTOMER_STAFF', cf.getItemValue('STAFF'));
+        f.setItemValue('CUSTOMER_ADRESS_LINE', cf.getItemValue('ADRESS_LINE'));
+        f.setItemValue('CUSTOMER_MOBILE_NUMBER', cf.getItemValue('MOBILE_NUMBER'));
+        f.setItemValue('cont', cont);
+        f.setItemValue('tip_cont',screens[screenName].ids.accounts.cells(cont,2).getValue());
+        f.setItemValue('valuta_cont',screens[screenName].ids.accounts.cells(cont,3).getValue());
+        f.setItemValue('data_cont',screens[screenName].ids.accounts.cells(cont,5).getValue());
+        f.setItemValue('card_type',gf.cells(gf_rid,12).getValue());
+        f.setItemValue('tip_card_tit', gf.cells(gf_rid,2).getValue());
+
+
+    },
+    CarduriActive_LockCard:function(screenName){
+        var grid=screens[screenName].ids.carduri_active_grid;
+        var rid=grid.getSelectedRowId();
+        initScreen(main,'lockCard');
+        var form=screens['lockCard'].ids.lockCard_form;
+        form.setItemValue('cust_no',screenName.split("<::>")[1]);
+        form.setItemValue('cardNumber',grid.getUserData(rid,'cardNumber'));
+        form.setItemValue('plasticNumber',grid.getUserData(rid,'plasticNumber'));
+        form.setItemValue('expiryDate',grid.getUserData(rid,'expiryDate').substr(0,10));
+
+        form.setItemValue('cardType',grid.cells(rid,2).getValue());
+        form.setItemValue('pan',grid.cells(rid,3).getValue());
+        form.setItemValue('client_name',grid.cells(rid,5).getValue());
+        if (grid.cells(rid,1).getValue()=='Titular') form.addToSelect('solicitant','Posesor card','Posesor card');
+
+
+    },
+
+    CarduriInactive_onXLE:function(grid){
+
+        screens[grid.screenName].ids.client_details.cells('carduri_inactive').setText("Carduri inchise: "+grid.getRowsNum());
+    },
+    new_card: function (account) {
+        initScreen(main,'new_card');
+        var screenName=screens_functions.activeScreen();
+        var f1=screens['new_card'].ids.new_card_titular_form;
+        var f2=screens[screenName].ids.client_details_form;
+        var g=screens[screenName].ids.accounts;
+        f1.setItemValue('varsta',getAge(yyyy_mm_ddToDate(f2.getItemValue('DATE_OF_BIRTH'))));
+        f1.setItemValue('titular',f2.getItemValue('CUTOMER_NAME1'));f1.setItemValue('cnp',f2.getItemValue('SHORT_NAME'));
+        f1.setItemValue('tip_client',f2.getItemValue('CUSTOMER_CATEGORY'));
+        var nameOnCard=f2.getItemValue('FIRST_NAME')+' '+f2.getItemValue('LAST_NAME');
+        if (nameOnCard.length>24) nameOnCard=f2.getItemValue('FIRST_NAME').substr(0,1)+'. '+f2.getItemValue('LAST_NAME');
+        f1.setItemValue('nume',nameOnCard);f1.setItemValue('mobile',f2.getItemValue('MOBILE_NUMBER').substr(0,10));
+        f1.setItemValue('CUSTOMER_NO',f2.getItemValue('CUSTOMER_NO'));
+        f1.setItemValue('ADDRLN',f2.getItemValue('ADRESS_LINE'));
+        f1.setItemValue('resident',f2.getItemValue('RESIDENT_STATUS'));
+        f1.setItemValue('sex',f2.getItemValue('SEX'));f1.setItemValue('staff',f2.getItemValue('STAFF'));
+        f1.setItemValue('cont',account);f1.setItemValue('tip_cont', g.cells(account,2).getValue());f1.setItemValue('valuta_cont',g.cells(account,3).getValue());
+        f1.setItemValue('data_cont', g.cells(account,5).getValue());
+        f1.setItemValue('angajator',f2.getItemValue('EMPLOYER'));f1.setItemValue('email',f2.getItemValue('EMAIL'));
+        f1.setItemValue('CLIENT_VBR',f2.getItemValue('CLIENT_VBR'));
+        if (f2.getItemValue('CLIENT_VBR')=='Y') {
+            var opts =f1.getOptions('motiv');
+            opts.add(new Option('Este client migrat din VolksBank', 'Promotia "Bun venit!"'));
+        }
+        f1.validate();
+        screens['new_card'].functions.getProductList();
+    },
+    onBeforeContextMenu:function(args){
+
+        args[2].selectRowById(args[0]);
+        return true
+    },
+
+    processRequest:function(screenName){
+        var g = screens[screenName].ids.cereri_in_lucru_grid;
+        var rid= g.getSelectedRowId();
+        dhtmlx.confirm({
+            title: "Procesare cerere",
+            type: "confirm-warning",
+            text: 'Confirmati procesarea cererii in sistemul de carduri ?',
+            ok: "DA",
+            cancel: "NU",
+            callback: function (status) {
+                if (status) {
+                    main.progressOn();
+                    window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+                    window.dhx4.ajax.Headers=[
+                        {key:"Accept",value:"application/json"}
+                    ];
+                    var loader=window.dhx4.ajax.get(system.services.processRequest+"?refNumber="+encodeURIComponent(rid)+'&userId='+system.auth.user,function(loader){
+                        main.progressOff();
+                        var err=false;
+                        if (loader.xmlDoc.status==200 ) {
+                            try {
+                                var res = JSON.parse(loader.xmlDoc.responseText);
+                                if (res.result!='Cerere trimisa spre PROCESARE-VISTA' && res.result!="In Aprobare Centrala" ) {
+                                    err=res.result;
+                                }
+
+                            }
+                            catch (e) {
+                                err = true;
+                            }
+                            if (!!err) {
+                                _error('Procesare cerere','Eroare la procesarea cererii : ' + err)
+                            }
+                            else {
+
+                                var screenName=screens_functions.activeScreen();
+                                var id_client=screenName.split("<::>")[1];
+                                var grid=screens[screenName].ids.cereri_in_lucru_grid;
+                                window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+                                window.dhx4.ajax.cache = true;
+                                var stats=screens[screenName].ids.cereri_in_lucru_toolbar.getGroupSelected('grup_1')=='CL'?'NEW,In Aprobare Centrala,Trimis Spre Aprobare Centrala':'PROCESATA,RESPINSA';
+                                grid.load(system.services.cardRequestsMS+'?cust_no='+id_client+'&status='+stats,'json');
+                                grid=screens[screenName].ids.carduri_in_lucru_grid;
+                                window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+                                window.dhx4.ajax.cache = true;
+                                grid.load(system.services.cardsInProgress+'?cust_no='+id_client,'json');
+                                dhtmlx.message({text:res.result+" cu succes !!",expire:3000});
+
+                            }
+                        }
+                        else _error('Procesare cerere','Eroare la procesarea cererii : '+loader.xmlDoc.status+' - '+loader.xmlDoc.statusText);
+
+                    });
+
+                }
+            }
+        });
+    },
+    reloadGrid:function(screenName,grid){
+
+       if (grid=='carduri_active_grid'){
+           var grid=screens[screenName].ids.carduri_active_grid;
+           window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+           grid.load(system.services.cardsActive+screenName.split("<::>")[1],'json');
+       };
+       if (grid=='carduri_in_lucru_grid'){
+            var grid=screens[screenName].ids.carduri_in_lucru_grid;
+            window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+            window.dhx4.ajax.cache = true;
+            grid.load(system.services.cardsInProgress+'?cust_no='+screenName.split("<::>")[1],'json');
+        };
+       if (grid=='carduri_inactive_grid') {
+           grid=screens[screenName].ids.carduri_inactive_grid;
+           window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+           window.dhx4.ajax.cache = true;
+           grid.load(system.services.cardsInactive+screenName.split("<::>")[1],'json');
+       }
+    },
+    getSMSDetails:function(grid){
+        var scr=grid.screenName;
+        var idcl=scr.split("<::>")[1];
+        window.dhx4.ajax.kerberosAuth.setReqAuth(true);
+        window.dhx4.ajax.get(system.services.getSMSStatus+idcl, function(loader){
+            if (loader.xmlDoc.status==200 ){
+                var err=false;
+                var data='';
+                try {
+                    if (!loader.xmlDoc.responseText) return;
+                    else {
+                        data=JSON.parse(loader.xmlDoc.responseText);
+                        var obj;
+                        obj=Object.keys(data['outputStatusSMS']);
+                        var data_r=[];
+
+                        for(var i=0;i<obj.length;i++){
+                            data_r.push(data['outputStatusSMS'][obj[i]].cardNumber);
+                        }
+
+                        var scr=screens_functions.activeScreen();
+                        var idcl=scr.split("<::>")[1];
+                        var grid=screens[scr].ids.carduri_active_grid;
+                        var rows=grid.getAllRowIds().split(",");
+                        var idx=-1;
+
+                        for(var i=0;i<rows.length;i++){
+                            idx=data_r.indexOf(rows[i]);
+                            if (idx>=0) {
+                                var isInSmsData=data_r.getAllIndexes(rows[i]);
+                                for(var k=0;k<isInSmsData.length;k++){
+                                    idx=isInSmsData[k];
+                                    if (grid.cells(rows[i],7).getValue()==data['outputStatusSMS'][idx]["expiryDate"].substr(0,7)){
+                                        obj=Object.keys(data['outputStatusSMS'][idx]);
+                                        for(var j=0;j<obj.length;j++){
+                                            grid.setUserData(rows[i],obj[j],data['outputStatusSMS'][idx][obj[j]] );
+
+                                        }
+                                        switch (data['outputStatusSMS'][idx]['smsServiceStatusFlag']){
+                                            case 0:
+                                            case 1:grid.cells(rows[i],11).setValue(data['outputStatusSMS'][idx]['phoneNumber']);break;
+                                            case 2:grid.cells(rows[i],11).setValue('Inactiv');break;
+                                            default :grid.cells(rows[i],11).setValue('-');break;
+                                        }
+                                    }
+
+                                }
+
+
+                            }
+                        }
+
+                    }
+
+                }
+                catch (e){
+                    err=e;
+                }
+                if (!!err) {
+                    return
+                }
+
+            }
+        });
+
+    },
+    activateSMS:function(status) {
+
+        var scr = screens_functions.activeScreen();
+        var grid = screens[scr].ids.carduri_active_grid;
+        var rid = grid.getSelectedRowId();
+
+        if (grid.cells(rid, 8).getValue() == "Card valid") {
+
+            win = initScreen(main, 'activate_sms');
+            var form = screens['activate_sms'].ids.activate_sms_form;
+                screens['activate_sms'].var={
+                    service:system.services.setSMSStatus,
+                    action_status:status
+                };
+
+
+            form.setItemValue('cust_no', scr.split("<::>")[1]);
+            form.setItemValue('client_name', grid.cells(rid, 5).getValue());
+            form.setItemValue('pan', grid.cells(rid, 3).getValue());
+            form.setItemValue('cardType', grid.cells(rid, 2).getValue());
+            form.setItemValue('cardNumber', grid.getUserData(rid, 'cardNumber'));
+            form.setItemValue('plasticNumber', grid.getUserData(rid, 'plasticNumber'));
+            form.setItemValue('expiryDate', grid.getUserData(rid, 'expiryDate').substr(0, 10));
+            form.setItemValue('phoneNumber', grid.getUserData(rid, 'phoneNumber'));
+
+            form.setItemValue('status', status);
+
+            if (status == 2) {
+                win.ids.activate_sms.setText('Dezactivare serviciu SMS-Alert:');
+                form.hideItem('activate');
+                form.showItem('deactivate');
+            }
+            if (status == 3) {
+                win.ids.activate_sms.setText('Modificare telefon serviciu SMS-Alert:');
+                form.hideItem('activate');
+                form.showItem('modify');
+                form.removeItem('status');
+                screens['activate_sms'].var.service=system.services.modifySMSPhone;
+            }
+        }
+        else _error('Activare/Dezactivare SMS - Alert','Cardul nu este activat de la ATM. Activare/ Dezactivarea nu este posibila.');
+
+
+    },
+    openClient:function(screenName,grid_name){
+        var id_client=screens[screenName].ids[grid_name].getSelectedRowId();
+        id_client=screens[screenName].ids[grid_name].cells(id_client,6).getValue();
+        if (!screens['main'].ids.sidebar.items("client_details<::>"+id_client)){
+            var item={
+                id:"client_details<::>"+id_client,
+                text: "",
+                text2:id_client,
+                enable_progress: "disable_progress",
+                icon: "User-Files-icon.png"};
+            screens['main'].ids.sidebar.addItem(item);
+            screens['main'].ids.sidebar.closeable("client_details<::>"+id_client,true);
+            screens['main'].ids.sidebar.items("client_details<::>"+id_client).setActive();
+            screens['main'].functions.onSelect(["client_details<::>"+id_client]);
+        }
+        else screens['main'].ids.sidebar.items("client_details<::>"+id_client).setActive();
+    },
+    openReqDetails:function(screenName,grid){
+        var grid=screens[screenName].ids[grid];
+        if (typeof arg == 'undefined') {
+            arg=[];arg.push(grid.getUserData(grid.getSelectedRowId(),'req_ref_no'));
+        }
+        initScreen(main,'request_details');
+        screens['request_details'].functions.loadData(arg[0]);
+    },
+    transferCardRequest : function(screenName,type){
+        grid=screens[screenName].ids.carduri_in_lucru_grid;
+        var rid=grid.getSelectedRowId();
+        if (grid.cells(rid,8).getValue()=='NEW') _error('Portare '+type,"Portarea "+type+"ului este posibila doar pentru "+type+"uri receptionate!");
+        else {
+            var s=initScreen(main,'portareCard');
+            if (s){
+                var f=screens['portareCard'].ids.formPortareCard;
+                f.setItemValue('pan',grid.cells(rid,2).getValue());
+                f.setItemValue('cardType',grid.cells(rid,7).getValue());
+                f.setItemValue('old_branch',grid.cells(rid,13).getValue()+' - '+grid.cells(rid,14).getValue());
+                if (type=='pin') screens['portareCard'].functions.setCardToPin();
+                screens['portareCard'].functions.findTask();
+            }
+
+        }
+
+
+    },
+
+    printRequest : function(screenName,grid){
+        var g = screens[screenName].ids[grid];
+        var rid= g.getSelectedRowId();
+        popup_file(system.services.report_cerere_eliberare+rid);
+    },
+    printRequest_SMS : function(screenName,grid){
+        var grid = screens[screenName].ids[grid];
+        var rid= grid.getSelectedRowId();
+        var link="&cust_no="+screenName.split("<::>")[1]+"&account="+grid.cells(rid,4).getValue()+"&card_type="+grid.cells(rid,2).getValue()+"&pan="+grid.cells(rid,3).getValue()+"&name_on_card="+grid.cells(rid,5).getValue()+"&phone="+grid.cells(rid,11).getValue();
+        link=encodeURI(link);
+        popup_file(system.services.report_cerere_sms_alert+link)
+    }
+}
+
+
+

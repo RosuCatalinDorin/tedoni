@@ -1,0 +1,1 @@
+<img src="http://web01cj001/flex/uat/id/libs/WS_sem_picture.php?cif=2100317&type=PF&cif_im=0W18343&res=binary"       />

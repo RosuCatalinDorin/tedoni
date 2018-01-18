@@ -1,0 +1,9 @@
+2013-01-14 17:41:56 - DEBUG --> paul.sas WS orn_insert_check : 
+2013-01-14 17:46:09 - DEBUG --> paul.sas WS orn_insert_check : 
+2013-01-14 17:46:53 - DEBUG --> paul.sas WS orn_insert_check : 
+2013-01-14 17:47:59 - DEBUG --> paul.sas WS orn_insert_check : 
+2013-01-14 17:48:18 - DEBUG --> paul.sas WS orn_insert_check : 
+2013-01-14 17:48:47 - DEBUG --> paul.sas WS orn_insert_check : 
+2013-01-14 17:49:12 - DEBUG --> paul.sas WS orn_insert_check : 
+2013-01-14 17:58:13 - DEBUG --> paul.sas WS orn_insert_check : 
+2013-01-14 17:58:40 - DEBUG --> paul.sas WS orn_insert_check : 
